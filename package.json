@@ -4,7 +4,7 @@
   "description": "Wrapper for `Duplex` stream objects to ensure they respect back-pressure",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --notify --coverage"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   ],
   "author": "Jesús Leganés-Combarro 'piranna' <piranna@gmail.com>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/piranna/backpressurify#readme"
+  "homepage": "https://bitbucket.org/piranna/backpressurify#readme",
+  "devDependencies": {
+    "jest": "^23.4.0"
+  }
 }

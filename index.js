@@ -7,16 +7,13 @@ module.exports = class Backpressurify extends Duplex
   {
     super({...options, objectMode: true})
 
+    const uncork = process.nextTick.bind(process, this.uncork.bind(this))
+
     this._duplex = duplex
-
-    this.cork()
-
-    const uncork = () => process.nextTick(this.uncork.bind(this))
-
-    duplex.on('close', this.close.bind(this))
-    duplex.on('end'  , this.push.bind(this, null))
-    duplex.on('error', this.emit.bind(this, 'error'))
-    duplex.on('data' , data =>
+    .once('close', this.destroy.bind(this))
+    .once('end', this.push.bind(this, null))
+    .on('error', this.emit.bind(this, 'error'))
+    .on('data' , data =>
     {
       switch(data)
       {
@@ -24,13 +21,14 @@ module.exports = class Backpressurify extends Duplex
         case 'uncork': return uncork()
       }
 
-      if(!this.push(message)) this._write('cork')
+      if(!this.push(data)) this._write('cork')
     })
-    duplex.on('drain', uncork)
+    .on('drain', uncork)
 
-    this.on('finish', duplex.end .bind(duplex))
-    this.on('pipe'  , duplex.emit.bind(duplex, 'pipe'))
-    this.on('unpipe', duplex.emit.bind(duplex, 'unpipe'))
+    this.once('finish', duplex.end.bind(duplex))
+    .on('pipe'  , duplex.emit.bind(duplex, 'pipe'))
+    .on('unpipe', duplex.emit.bind(duplex, 'unpipe'))
+    .cork()
   }
 
   _destroy(err, callback)
