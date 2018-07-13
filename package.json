@@ -1,0 +1,23 @@
+{
+  "name": "backpressurify",
+  "version": "0.0.0",
+  "description": "Wrapper for `Duplex` stream objects to ensure they respect back-pressure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/piranna/backpressurify.git"
+  },
+  "keywords": [
+    "backpressure",
+    "back-pressure",
+    "stream",
+    "streams",
+    "duplex"
+  ],
+  "author": "Jesús Leganés-Combarro 'piranna' <piranna@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/piranna/backpressurify#readme"
+}
