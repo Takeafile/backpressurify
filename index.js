@@ -9,6 +9,8 @@ module.exports = class Backpressurify extends Duplex
 
     const uncork = process.nextTick.bind(process, this.uncork.bind(this))
 
+    this._remoteCorked = true
+
     this._duplex = duplex
     .once('close', this.destroy.bind(this))
     .once('end', this.push.bind(this, null))
@@ -21,7 +23,11 @@ module.exports = class Backpressurify extends Duplex
         case 'uncork': return uncork()
       }
 
-      if(!this.push(data)) this._write('cork')
+      if(!this.push(data))
+      {
+        this._remoteCorked = true
+        this._write('cork')
+      }
     })
     .on('drain', uncork)
 
@@ -40,7 +46,11 @@ module.exports = class Backpressurify extends Duplex
 
   _read()
   {
-    this._write('uncork')
+    if(this._remoteCorked)
+    {
+      this._remoteCorked = false
+      this._write('uncork')
+    }
   }
 
   _write(data, encoding, callback)
