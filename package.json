@@ -21,6 +21,6 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/piranna/backpressurify#readme",
   "devDependencies": {
-    "jest": "^23.4.0"
+    "jest": "^23.6.0"
   }
 }
