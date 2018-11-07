@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/piranna/backpressurify.git"
+    "url": "git+ssh://git@github.com/Takeafile/backpressurify.git"
   },
   "keywords": [
     "backpressure",
@@ -19,7 +19,7 @@
   ],
   "author": "Jesús Leganés-Combarro 'piranna' <piranna@gmail.com>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/piranna/backpressurify#readme",
+  "homepage": "https://github.com/Takeafile/backpressurify#readme",
   "devDependencies": {
     "jest": "^23.6.0"
   }
