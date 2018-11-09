@@ -1,5 +1,7 @@
 # backpressurify
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Takeafile/backpressurify.svg)](https://greenkeeper.io/)
+
 Wrapper for `Duplex` stream objects to ensure they respect back-pressure
 
 This module add support for back-pressure on `Duplex` stream objects that don't
